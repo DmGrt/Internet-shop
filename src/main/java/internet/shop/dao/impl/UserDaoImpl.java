@@ -1,0 +1,51 @@
+package internet.shop.dao.impl;
+
+import internet.shop.dao.interfaces.UserDao;
+import internet.shop.db.Storage;
+import internet.shop.lib.Dao;
+import internet.shop.models.User;
+import java.util.List;
+import java.util.Optional;
+
+@Dao
+public class UserDaoImpl implements UserDao {
+    @Override
+    public User create(User user) {
+        Storage.addUser(user);
+        return user;
+    }
+
+    @Override
+    public Optional<User> getById(Long userId) {
+        return Storage.users.stream()
+                .filter(x -> x.getId().equals(userId))
+                .findFirst();
+    }
+
+    @Override
+    public User update(User user) {
+        for (int i = 0; i < Storage.users.size(); i++) {
+            if (Storage.users.get(i).getId().equals(user.getId())) {
+                User oldUser = Storage.users.get(i);
+                Storage.users.set(i, user);
+                return oldUser;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean deleteById(Long userId) {
+        return Storage.users.removeIf(x -> x.getId().equals(userId));
+    }
+
+    @Override
+    public boolean delete(User user) {
+        return deleteById(user.getId());
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return Storage.users;
+    }
+}
