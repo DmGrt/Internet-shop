@@ -1,9 +1,9 @@
 package internet.shop.db;
 
-import internet.shop.models.Order;
-import internet.shop.models.Product;
-import internet.shop.models.ShoppingCart;
-import internet.shop.models.User;
+import internet.shop.model.Order;
+import internet.shop.model.Product;
+import internet.shop.model.ShoppingCart;
+import internet.shop.model.User;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package internet.shop.dao.impl;
 
-import internet.shop.dao.interfaces.OrderDao;
+import internet.shop.dao.daointerface.OrderDao;
 import internet.shop.lib.Dao;
 
 @Dao

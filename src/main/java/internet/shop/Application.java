@@ -1,8 +1,8 @@
 package internet.shop;
 
 import internet.shop.lib.Injector;
-import internet.shop.models.Product;
-import internet.shop.services.interfaces.ProductService;
+import internet.shop.model.Product;
+import internet.shop.service.serviceinterface.ProductService;
 
 public class Application {
     private static Injector injector = Injector.getInstance("internet.shop");
@@ -11,15 +11,21 @@ public class Application {
         ProductService productService = (ProductService)
                 injector.getInstance(ProductService.class);
 
-        productService.create(new Product("Apple",2_000_000_000));
-        productService.create(new Product("Google",1_000_000_000));
-        productService.create(new Product("Huawei",95_000_000));
-        productService.create(new Product("Xiaomi",33_000_000));
-        productService.create(new Product("Samsung",363_000_000));
+       Product apple = new Product("Apple",2_000_000_000);
+       Product google = new Product("Google",1_000_000_000);
+       Product huawei = new Product("Huawei",95_000_000);
+       Product xiaomi = new Product("Xiaomi",33_000_000);
+       Product samsung = new Product("Samsung",363_000_000);
+
+        productService.create(apple);
+        productService.create(google);
+        productService.create(huawei);
+        productService.create(xiaomi);
+        productService.create(samsung);
         printInfo(productService);
 
         System.out.println("!!Huawei leaves the market!!");
-        productService.deleteById(3L);
+        productService.delete(huawei.getId());
         printInfo(productService);
 
         System.out.println("!!Xiaomi rebrands to Redmi!!");
@@ -31,7 +37,7 @@ public class Application {
 
     private static void printInfo(ProductService productService) {
         System.out.println("Companies for sale:");
-        productService.getAllProducts().forEach(System.out::println);
+        productService.getAll().forEach(System.out::println);
         System.out.println("------------------\n");
     }
 }

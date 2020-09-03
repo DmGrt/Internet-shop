@@ -1,7 +1,7 @@
-package internet.shop.services.impl;
+package internet.shop.service.impl;
 
 import internet.shop.lib.Service;
-import internet.shop.services.interfaces.ShoppingCartService;
+import internet.shop.service.serviceinterface.ShoppingCartService;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {

@@ -1,11 +1,12 @@
 package internet.shop.dao.impl;
 
-import internet.shop.dao.interfaces.ProductDao;
+import internet.shop.dao.daointerface.ProductDao;
 import internet.shop.db.Storage;
 import internet.shop.lib.Dao;
-import internet.shop.models.Product;
+import internet.shop.model.Product;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Dao
 public class ProductDaoImpl implements ProductDao {
@@ -16,36 +17,27 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Optional<Product> getById(Long productId) {
+    public Optional<Product> get(Long id) {
         return Storage.products.stream()
-                .filter(x -> x.getId().equals(productId))
+                .filter(product -> product.getId().equals(id))
                 .findFirst();
     }
 
     @Override
     public Product update(Product product) {
-        for (int i = 0; i < Storage.products.size(); i++) {
-            if (Storage.products.get(i).getId().equals(product.getId())) {
-                Product oldProduct = Storage.products.get(i);
-                Storage.products.set(i, product);
-                return oldProduct;
-            }
-        }
-        return null;
+        IntStream.range(0, Storage.products.size())
+                .filter(i -> Storage.products.get(i).getId().equals(product.getId()))
+                .forEach(i -> Storage.products.set(i, product));
+        return product;
     }
 
     @Override
-    public boolean deleteById(Long productId) {
-        return Storage.products.removeIf(x -> x.getId().equals(productId));
+    public boolean delete(Long id) {
+        return Storage.products.removeIf(x -> x.getId().equals(id));
     }
 
     @Override
-    public boolean delete(Product product) {
-        return deleteById(product.getId());
-    }
-
-    @Override
-    public List<Product> getAllProducts() {
+    public List<Product> getAll() {
         return Storage.products;
     }
 }

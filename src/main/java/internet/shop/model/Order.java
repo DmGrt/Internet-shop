@@ -1,4 +1,4 @@
-package internet.shop.models;
+package internet.shop.model;
 
 import java.util.List;
 import java.util.Objects;
@@ -8,8 +8,7 @@ public class Order {
     private List<Product> products;
     private Long userId;
 
-    public Order(List<Product> products, Long userId) {
-        this.products = products;
+    public Order(Long userId) {
         this.userId = userId;
     }
 
