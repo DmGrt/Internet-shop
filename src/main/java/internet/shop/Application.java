@@ -2,7 +2,7 @@ package internet.shop;
 
 import internet.shop.lib.Injector;
 import internet.shop.model.Product;
-import internet.shop.service.serviceinterface.ProductService;
+import internet.shop.service.ProductService;
 
 public class Application {
     private static Injector injector = Injector.getInstance("internet.shop");
@@ -30,7 +30,7 @@ public class Application {
 
         System.out.println("!!Xiaomi rebrands to Redmi!!");
         Product updatedProduct = new Product("Redmi", 35_000_000);
-        updatedProduct.setId(4L);
+        updatedProduct.setId(xiaomi.getId());
         productService.update(updatedProduct);
         printInfo(productService);
     }

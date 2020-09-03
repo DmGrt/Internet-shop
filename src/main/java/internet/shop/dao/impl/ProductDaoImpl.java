@@ -1,6 +1,6 @@
 package internet.shop.dao.impl;
 
-import internet.shop.dao.daointerface.ProductDao;
+import internet.shop.dao.ProductDao;
 import internet.shop.db.Storage;
 import internet.shop.lib.Dao;
 import internet.shop.model.Product;
@@ -33,7 +33,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public boolean delete(Long id) {
-        return Storage.products.removeIf(x -> x.getId().equals(id));
+        return Storage.products.removeIf(product -> product.getId().equals(id));
     }
 
     @Override

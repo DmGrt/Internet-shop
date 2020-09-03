@@ -1,4 +1,4 @@
-package internet.shop.service.serviceinterface;
+package internet.shop.service;
 
 import internet.shop.model.Product;
 import java.util.List;
