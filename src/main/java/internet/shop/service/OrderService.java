@@ -1,8 +1,7 @@
-package internet.shop.service.serviceinterface;
+package internet.shop.service;
 
 import internet.shop.model.Order;
 import internet.shop.model.ShoppingCart;
-
 import java.util.List;
 
 public interface OrderService {

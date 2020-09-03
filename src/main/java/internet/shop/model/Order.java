@@ -1,5 +1,6 @@
 package internet.shop.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +10,7 @@ public class Order {
     private Long userId;
 
     public Order(Long userId) {
+        products = new ArrayList<>();
         this.userId = userId;
     }
 
@@ -53,5 +55,11 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(id, products, userId);
+    }
+
+    @Override
+    public String toString() {
+        return "Order : " + "{ id - " + id + "; products - "
+                + products + "; userId - " + userId + "} ";
     }
 }

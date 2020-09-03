@@ -1,11 +1,11 @@
 package internet.shop.service.impl;
 
-import internet.shop.dao.daointerface.ShoppingCartDao;
+import internet.shop.dao.ShoppingCartDao;
 import internet.shop.lib.Inject;
 import internet.shop.lib.Service;
 import internet.shop.model.Product;
 import internet.shop.model.ShoppingCart;
-import internet.shop.service.serviceinterface.ShoppingCartService;
+import internet.shop.service.ShoppingCartService;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -20,7 +20,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public ShoppingCart addProduct(ShoppingCart shoppingCart, Product product) {
         shoppingCartDao.get(shoppingCart.getId())
-                .orElseThrow()
+                .get()
                 .getProducts()
                 .add(product);
         return shoppingCart;
@@ -28,21 +28,32 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public ShoppingCart deleteProduct(ShoppingCart shoppingCart, Product product) {
-        return null;
+        shoppingCartDao.get(shoppingCart.getId())
+                .get()
+                .getProducts()
+                .remove(product);
+        return shoppingCart;
     }
 
     @Override
     public void clear(ShoppingCart shoppingCart) {
-
+        shoppingCartDao.get(shoppingCart.getId())
+                .get()
+                .getProducts()
+                .clear();
     }
 
     @Override
     public ShoppingCart getByUserId(Long userId) {
-        return null;
+        return shoppingCartDao.getAll().stream()
+                .filter(shoppingCart -> shoppingCart.getUserId().equals(userId))
+                .findFirst()
+                .get();
     }
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        shoppingCartDao.delete(id);
+        return true;
     }
 }

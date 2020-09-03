@@ -1,10 +1,10 @@
 package internet.shop.service.impl;
 
-import internet.shop.dao.daointerface.UserDao;
+import internet.shop.dao.UserDao;
 import internet.shop.lib.Inject;
 import internet.shop.lib.Service;
 import internet.shop.model.User;
-import internet.shop.service.serviceinterface.UserService;
+import internet.shop.service.UserService;
 import java.util.List;
 
 @Service
@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(Long id) {
-        return userDao.get(id).orElseThrow();
+        return userDao.get(id).get();
     }
 
     @Override

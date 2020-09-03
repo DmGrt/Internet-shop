@@ -1,12 +1,13 @@
-package internet.shop.service.serviceinterface;
+package internet.shop.dao;
 
 import internet.shop.model.User;
 import java.util.List;
+import java.util.Optional;
 
-public interface UserService {
+public interface UserDao {
     User create(User user);
 
-    User get(Long id);
+    Optional<User> get(Long id);
 
     List<User> getAll();
 

@@ -1,4 +1,4 @@
-package internet.shop.service.serviceinterface;
+package internet.shop.service;
 
 import internet.shop.model.Product;
 import internet.shop.model.ShoppingCart;

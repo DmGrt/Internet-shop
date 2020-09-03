@@ -1,4 +1,4 @@
-package internet.shop.dao.daointerface;
+package internet.shop.dao;
 
 import internet.shop.model.ShoppingCart;
 import java.util.List;
