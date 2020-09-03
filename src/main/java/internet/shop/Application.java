@@ -11,11 +11,11 @@ public class Application {
         ProductService productService = (ProductService)
                 injector.getInstance(ProductService.class);
 
-       Product apple = new Product("Apple",2_000_000_000);
-       Product google = new Product("Google",1_000_000_000);
-       Product huawei = new Product("Huawei",95_000_000);
-       Product xiaomi = new Product("Xiaomi",33_000_000);
-       Product samsung = new Product("Samsung",363_000_000);
+        Product apple = new Product("Apple", 2_000_000_000);
+        Product google = new Product("Google", 1_000_000_000);
+        Product huawei = new Product("Huawei", 95_000_000);
+        Product xiaomi = new Product("Xiaomi", 33_000_000);
+        Product samsung = new Product("Samsung", 363_000_000);
 
         productService.create(apple);
         productService.create(google);
