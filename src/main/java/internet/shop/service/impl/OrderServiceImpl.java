@@ -1,7 +1,6 @@
 package internet.shop.service.impl;
 
 import internet.shop.dao.OrderDao;
-import internet.shop.db.Storage;
 import internet.shop.lib.Inject;
 import internet.shop.lib.Service;
 import internet.shop.model.Order;
@@ -9,7 +8,6 @@ import internet.shop.model.ShoppingCart;
 import internet.shop.service.OrderService;
 import internet.shop.service.ShoppingCartService;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
