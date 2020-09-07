@@ -23,6 +23,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 .get()
                 .getProducts()
                 .add(product);
+        shoppingCartDao.update(shoppingCart);
         return shoppingCart;
     }
 
@@ -32,6 +33,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 .get()
                 .getProducts()
                 .remove(product);
+        shoppingCartDao.update(shoppingCart);
         return shoppingCart;
     }
 
@@ -41,6 +43,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 .get()
                 .getProducts()
                 .clear();
+        shoppingCartDao.update(shoppingCart);
     }
 
     @Override
