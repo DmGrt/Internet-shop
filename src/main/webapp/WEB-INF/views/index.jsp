@@ -3,7 +3,7 @@
 <head>
     <title>Internet Shop</title>
 </head>
-<body>
+<body bgcolor="#00008b">
 <div style="text-align: center;">
     <span style="color: gold; font-family: Corbel,fantasy; font-size: xx-large;">
         Hello Mate!
