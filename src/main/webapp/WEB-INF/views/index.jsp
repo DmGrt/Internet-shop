@@ -1,17 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 07.09.2020
-  Time: 14:45
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Internet Shop</title>
 </head>
 <body>
-<h1>Hi Mate!</h1>
-<h3>Frogggy</h3>
+<div style="text-align: center;">
+    <span style="color: gold; font-family: Corbel,fantasy; font-size: xx-large;">
+        Hello Mate!
+    </span>
+</div>
 </body>
 </html>
