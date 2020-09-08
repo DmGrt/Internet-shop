@@ -51,7 +51,7 @@ public class Application {
         shoppingCartService.addProduct(franksCart, productService.get(samsung.getId()));
         shoppingCartService.addProduct(franksCart, productService.get(xiaomi.getId()));
         System.out.println("Frank's shopping cart: created");
-        System.out.println(shoppingCartService.get(frank.getId()));
+        System.out.println(shoppingCartService.getByUserId(frank.getId()));
         System.out.println("Frank's shopping cart: removed one product");
         shoppingCartService.deleteProduct(franksCart, productService.get(xiaomi.getId()));
         System.out.println(franksCart.toString());
@@ -59,7 +59,7 @@ public class Application {
         OrderService orderService = (OrderService)
                 injector.getInstance(OrderService.class);
         System.out.println("Frank's order: created");
-        orderService.completeOrder(shoppingCartService.get(frank.getId()));
+        orderService.completeOrder(shoppingCartService.getByUserId(frank.getId()));
         System.out.println(orderService.get(franksCart.getId()));
         System.out.println("Frank's order: deleted");
         orderService.delete(franksCart.getId());
