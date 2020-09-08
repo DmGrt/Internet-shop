@@ -3,10 +3,10 @@
 <head>
     <title>Internet Shop</title>
 </head>
-<body bgcolor="#00008b">
+<body bgcolor="#daa520">
 <div style="text-align: center;">
-    <span style="color: gold; font-family: Corbel,fantasy; font-size: xx-large;">
-        Hello Mate!
+    <span style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: xx-large;">
+       <a href="https://mate.academy/uk">Hello Mate!</a>
     </span>
 </div>
 </body>
