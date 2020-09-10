@@ -68,6 +68,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>deleteProductByAdminController</servlet-name>
+        <servlet-class>internet.shop.controller.product.DeleteProductByAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteProductByAdminController</servlet-name>
+        <url-pattern>/product/deleteByAdmin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>allProducts</servlet-name>
         <servlet-class>internet.shop.controller.product.GetProductsController</servlet-class>
     </servlet>
@@ -101,5 +110,14 @@
     <servlet-mapping>
         <servlet-name>deleteShoppingCartProducts</servlet-name>
         <url-pattern>/shopping-cart/products/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createOrder</servlet-name>
+        <servlet-class>internet.shop.controller.order.CreateOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createOrder</servlet-name>
+        <url-pattern>/order/create</url-pattern>
     </servlet-mapping>
 </web-app>

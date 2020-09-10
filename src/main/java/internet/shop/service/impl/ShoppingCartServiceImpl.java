@@ -62,4 +62,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public boolean delete(Long id) {
         return shoppingCartDao.delete(id);
     }
+
+    public double getTotalPrice(ShoppingCart shoppingCart) {
+        return shoppingCart.getProducts().stream()
+                .mapToDouble(Product::getPrice)
+                .sum();
+    }
 }

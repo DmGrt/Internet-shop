@@ -4,7 +4,7 @@
 <head>
     <title>All Products</title>
 </head>
-<body style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: xx-large; color: #3131b7; background: #d69246">
+<body style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: x-large; color: #3131b7; background: #d69246">
 <h2>All products in shopping cart</h2>
 <table border="1">
     <tr>
@@ -25,6 +25,16 @@
         </tr>
     </c:forEach>
 </table>
+<br>
+Total :<br>
+Number of products - ${numberOfProducts}<br>
+Price - ${cartPrice}<br>
+<br>
+<form method="post" action="${pageContext.request.contextPath}/order/create">
+<button type="submit">Confirm order</button>
+</form>
+<br>
+<br>
 <a href="${pageContext.request.contextPath}/">Back to main page</a>
 </body>
 </html>

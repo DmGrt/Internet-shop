@@ -4,7 +4,7 @@
 <head>
     <title>All users</title>
 </head>
-<body style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: xx-large; color: #3131b7; background: #d69246">
+<body style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: x-large; color: #3131b7; background: #d69246">
 <h2>All our clients!</h2>
 <table border="1">
     <tr>

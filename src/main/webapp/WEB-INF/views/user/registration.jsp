@@ -3,7 +3,7 @@
 <head>
     <title>Registration</title>
 </head>
-<body style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: xx-large; color: #030392; background: #d69246">
+<body style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: x-large; color: #030392; background: #d69246">
 <h3>Hi! Fill in the forms for registration!</h3>
 <h3 style="color: red">${message}</h3>
 <form method="post" action="${pageContext.request.contextPath}/user/registration">

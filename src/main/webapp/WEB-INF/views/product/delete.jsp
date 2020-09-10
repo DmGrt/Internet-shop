@@ -5,7 +5,8 @@
     <title>All users</title>
 </head>
 <body style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: x-large; color: #3131b7; background: #d69246">
-<h2>All our products!</h2>
+<h2>Hi ADMIN! Here you can delete products</h2>
+<a href="${pageContext.request.contextPath}/product/add">Create product</a>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -24,7 +25,7 @@
                 <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/shopping-cart/products/add?id=${product.id}">Buy</a>
+                <a href="${pageContext.request.contextPath}/product/deleteByAdmin?id=${product.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>
