@@ -5,7 +5,7 @@
     <title>All user orders</title>
 </head>
 <body style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: x-large; color: #3131b7; background: #d69246">
-<h2>All Orders!(Admin options)</h2>
+<h2>All User orders!</h2>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -18,9 +18,6 @@
             </td>
             <td>
                 <c:out value="${order.products}"/>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/order/delete?id=${order.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>

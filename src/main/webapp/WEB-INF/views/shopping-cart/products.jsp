@@ -30,7 +30,7 @@ Total :<br>
 Number of products - ${numberOfProducts}<br>
 Price - ${cartPrice}<br>
 <br>
-<form method="post" action="${pageContext.request.contextPath}/order/create">
+<form method="get" action="${pageContext.request.contextPath}/order/create">
 <button type="submit">Confirm order</button>
 </form>
 <br>

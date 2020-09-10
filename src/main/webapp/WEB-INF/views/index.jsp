@@ -25,6 +25,10 @@
         <a href="${pageContext.request.contextPath}/shopping-cart/products">Shopping cart</a>
         <br>
         <a href="${pageContext.request.contextPath}/product/delete">Product managing (for admin)</a>
+        <br>
+        <a href="${pageContext.request.contextPath}/order/user/orders">User orders</a>
+        <br>
+        <a href="${pageContext.request.contextPath}/order/all">All orders</a>
     </span>
 </div>
 </body>

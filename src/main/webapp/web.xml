@@ -120,4 +120,31 @@
         <servlet-name>createOrder</servlet-name>
         <url-pattern>/order/create</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getUserOrders</servlet-name>
+        <servlet-class>internet.shop.controller.order.GetUserOrders</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUserOrders</servlet-name>
+        <url-pattern>/order/user/orders</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteUserOrders</servlet-name>
+        <servlet-class>internet.shop.controller.order.DeleteUserOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteUserOrders</servlet-name>
+        <url-pattern>/order/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getAllOrders</servlet-name>
+        <servlet-class>internet.shop.controller.order.GetAllOrders</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getAllOrders</servlet-name>
+        <url-pattern>/order/all</url-pattern>
+    </servlet-mapping>
 </web-app>

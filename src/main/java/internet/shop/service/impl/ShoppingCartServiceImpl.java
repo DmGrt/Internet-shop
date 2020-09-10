@@ -64,8 +64,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     public double getTotalPrice(ShoppingCart shoppingCart) {
-        return shoppingCart.getProducts().stream()
-                .mapToDouble(Product::getPrice)
-                .sum();
+        return shoppingCartDao.getTotalPrice(shoppingCart);
     }
 }
