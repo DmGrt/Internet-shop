@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BuyProductController extends HttpServlet {
+public class AddProductToCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("internet.shop");
     private ShoppingCartService shoppingCartService =
@@ -22,6 +22,6 @@ public class BuyProductController extends HttpServlet {
         Long productId = Long.valueOf(req.getParameter("id"));
         Product product = productService.get(productId);
         shoppingCartService.addProduct(shoppingCartService.getByUserId(USER_ID), product);
-        resp.sendRedirect(req.getContextPath() + "/products/all");
+        resp.sendRedirect(req.getContextPath() + "/product/all");
     }
 }

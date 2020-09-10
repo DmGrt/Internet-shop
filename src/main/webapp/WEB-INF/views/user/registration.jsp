@@ -6,7 +6,7 @@
 <body style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: xx-large; color: #030392; background: #d69246">
 <h3>Hi! Fill in the forms for registration!</h3>
 <h3 style="color: red">${message}</h3>
-<form method="post" action="${pageContext.request.contextPath}/users/registration">
+<form method="post" action="${pageContext.request.contextPath}/user/registration">
     <label for="name">Name :</label><br>
     <input id="name" type="text" required="required" name="name" value="${name}"><br>
     <br>

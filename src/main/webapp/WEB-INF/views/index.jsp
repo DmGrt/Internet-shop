@@ -14,15 +14,15 @@
     <span style="font-family: 'Droid Sans Mono Dotted',cursive; font-size: xx-large;">
         <a href="${pageContext.request.contextPath}/injectData">Inject test data into the DB!</a>
         <br>
-        <a href="${pageContext.request.contextPath}/users/registration">Registration here</a>
+        <a href="${pageContext.request.contextPath}/user/registration">Registration here</a>
         <br>
-        <a href="${pageContext.request.contextPath}/users/all">All users here</a>
+        <a href="${pageContext.request.contextPath}/user/all">All users here</a>
         <br>
-        <a href="${pageContext.request.contextPath}/products/add">Add new product</a>
+        <a href="${pageContext.request.contextPath}/product/add">Add new product</a>
         <br>
-        <a href="${pageContext.request.contextPath}/products/all">All products</a>
+        <a href="${pageContext.request.contextPath}/product/all">All products</a>
         <br>
-        <a href="${pageContext.request.contextPath}/shopping-carts/products">Shopping cart</a>
+        <a href="${pageContext.request.contextPath}/shopping-cart/products">Shopping cart</a>
     </span>
 </div>
 </body>
