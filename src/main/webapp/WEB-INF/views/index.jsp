@@ -44,12 +44,12 @@
         <br>
         <a style="color: #f68f13" href="${pageContext.request.contextPath}/shopping-cart/products">Shopping cart</a>
         <br>
-        <a style="color: #f68f13" href="${pageContext.request.contextPath}/order/user/orders">User orders</a>
+        <a style="color: #f68f13" href="${pageContext.request.contextPath}/order/by-user">User orders</a>
         <br>
         <a style="color: #f68f13" href="${pageContext.request.contextPath}/order/all">All orders (for admin)</a>
         <br>
         <a style="color: #f68f13"
-           href="${pageContext.request.contextPath}/product/delete">Product managing (for admin)</a>
+           href="${pageContext.request.contextPath}/product/get-for-manage">Product managing (for admin)</a>
     </span>
 </div>
 <div>

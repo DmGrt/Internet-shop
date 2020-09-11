@@ -37,7 +37,7 @@ background-image: linear-gradient(#4a4a4a, #000000); color: #f68f13;">
             </td>
             <td>
                 <a style="color: #f68f13"
-                   href="${pageContext.request.contextPath}/product/deleteByAdmin?id=${product.id}">Delete</a>
+                   href="${pageContext.request.contextPath}/product/delete?id=${product.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>

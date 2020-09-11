@@ -59,21 +59,21 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>getProductsForManage</servlet-name>
+        <servlet-class>internet.shop.controller.product.GetProductsForManageController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getProductsForManage</servlet-name>
+        <url-pattern>/product/get-for-manage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>deleteProduct</servlet-name>
         <servlet-class>internet.shop.controller.product.DeleteProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProduct</servlet-name>
         <url-pattern>/product/delete</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>deleteProductByAdminController</servlet-name>
-        <servlet-class>internet.shop.controller.product.DeleteProductByAdminController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>deleteProductByAdminController</servlet-name>
-        <url-pattern>/product/deleteByAdmin</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -114,7 +114,7 @@
 
     <servlet>
         <servlet-name>createOrder</servlet-name>
-        <servlet-class>internet.shop.controller.order.CreateOrderController</servlet-class>
+        <servlet-class>internet.shop.controller.order.CompleteOrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createOrder</servlet-name>
@@ -127,12 +127,12 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>getUserOrders</servlet-name>
-        <url-pattern>/order/user/orders</url-pattern>
+        <url-pattern>/order/by-user</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>deleteUserOrders</servlet-name>
-        <servlet-class>internet.shop.controller.order.DeleteUserOrderController</servlet-class>
+        <servlet-class>internet.shop.controller.order.DeleteOrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteUserOrders</servlet-name>
