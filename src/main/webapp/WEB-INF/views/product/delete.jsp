@@ -14,33 +14,35 @@
 </style>
 <body style="font-family: Bahnschrift,cursive; font-size: x-large;
 background-image: linear-gradient(#4a4a4a, #000000); color: #f68f13;">
-<h2>All our clients!</h2>
+<h2>Hi ADMIN! Here you can delete products</h2>
+<a style="color: #f68f13" href="${pageContext.request.contextPath}/product/add">Create product</a>
 <table class="table" style="width: 50%">
     <thead class="thead-light">
     <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Login</th>
+        <th>Product</th>
+        <th>Price</th>
         <th> </th>
     </tr>
-    <c:forEach var="user" items="${users}">
+    <c:forEach var="product" items="${products}">
         <tr style="color: ghostwhite">
             <td>
-                <c:out value="${user.id}"/>
+                <c:out value="${product.id}"/>
             </td>
             <td>
-                <c:out value="${user.name}"/>
+                <c:out value="${product.name}"/>
             </td>
             <td>
-                <c:out value="${user.login}"/>
+                <c:out value="${product.price}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/users/delete?id=${user.id}">Delete</a>
+                <a style="color: #f68f13"
+                   href="${pageContext.request.contextPath}/product/delete?id=${product.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<a style="color:#f68f13;" href="${pageContext.request.contextPath}/">Back to main page</a>
+<a style="color: #f68f13" href="${pageContext.request.contextPath}/">Back to main page</a>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

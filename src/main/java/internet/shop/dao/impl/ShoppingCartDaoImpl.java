@@ -3,6 +3,7 @@ package internet.shop.dao.impl;
 import internet.shop.dao.ShoppingCartDao;
 import internet.shop.db.Storage;
 import internet.shop.lib.Dao;
+import internet.shop.model.Product;
 import internet.shop.model.ShoppingCart;
 import java.util.List;
 import java.util.Optional;
@@ -46,5 +47,12 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
         return Storage.shoppingCarts.stream()
                 .filter(shoppingCart -> shoppingCart.getUserId().equals(userId))
                 .findFirst();
+    }
+
+    @Override
+    public double getTotalPrice(ShoppingCart shoppingCart) {
+        return shoppingCart.getProducts().stream()
+                .mapToDouble(Product::getPrice)
+                .sum();
     }
 }

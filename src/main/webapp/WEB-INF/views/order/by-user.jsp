@@ -2,8 +2,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>All users</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    <title>All user orders</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <style>
@@ -12,35 +13,35 @@
         margin-left: 50px;
     }
 </style>
-<body style="font-family: Bahnschrift,cursive; font-size: x-large;
-background-image: linear-gradient(#4a4a4a, #000000); color: #f68f13;">
-<h2>All our clients!</h2>
+<body style="font-family: Bahnschrift,cursive; font-size: x-large; background-image:
+linear-gradient(#4a4a4a, #000000); color: #f68f13;">
+<h2>All User orders!</h2>
 <table class="table" style="width: 50%">
     <thead class="thead-light">
     <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Login</th>
-        <th> </th>
+        <th>Order</th>
+        <th>Total price</th>
     </tr>
-    <c:forEach var="user" items="${users}">
-        <tr style="color: ghostwhite">
-            <td>
-                <c:out value="${user.id}"/>
-            </td>
-            <td>
-                <c:out value="${user.name}"/>
-            </td>
-            <td>
-                <c:out value="${user.login}"/>
-            </td>
-            <td>
-                <a href="${pageContext.request.contextPath}/users/delete?id=${user.id}">Delete</a>
-            </td>
-        </tr>
+    <c:forEach var="order" items="${orders}">
+        <c:set var="totalPrice" value="${0}"/>
+    <c:forEach var="product" items="${order.products}">
+        <c:set var="totalPrice" value="${totalPrice + product.price}"/>
+    </c:forEach>
+    <tr style="color: ghostwhite">
+        <td>
+            <c:out value="${order.id}"/>
+        </td>
+        <td>
+            <c:out value="${order.products}"/>
+        </td>
+        <td>
+                ${totalPrice}
+        </td>
+    </tr>
     </c:forEach>
 </table>
-<a style="color:#f68f13;" href="${pageContext.request.contextPath}/">Back to main page</a>
+<a style="color: #f68f13" href="${pageContext.request.contextPath}/">Back to main page</a>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

@@ -12,4 +12,5 @@ public interface ShoppingCartService extends GenericService<ShoppingCart, Long> 
 
     void clear(ShoppingCart shoppingCart);
 
+    double getTotalPrice(ShoppingCart shoppingCart);
 }

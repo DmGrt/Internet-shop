@@ -59,6 +59,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>getProductsForManage</servlet-name>
+        <servlet-class>internet.shop.controller.product.GetProductsForManageController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getProductsForManage</servlet-name>
+        <url-pattern>/product/manage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>deleteProduct</servlet-name>
         <servlet-class>internet.shop.controller.product.DeleteProductController</servlet-class>
     </servlet>
@@ -101,5 +110,41 @@
     <servlet-mapping>
         <servlet-name>deleteShoppingCartProducts</servlet-name>
         <url-pattern>/shopping-cart/products/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createOrder</servlet-name>
+        <servlet-class>internet.shop.controller.order.CompleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createOrder</servlet-name>
+        <url-pattern>/order/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getUserOrders</servlet-name>
+        <servlet-class>internet.shop.controller.order.GetUserOrdersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUserOrders</servlet-name>
+        <url-pattern>/order/by-user</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteUserOrders</servlet-name>
+        <servlet-class>internet.shop.controller.order.DeleteOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteUserOrders</servlet-name>
+        <url-pattern>/order/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getAllOrders</servlet-name>
+        <servlet-class>internet.shop.controller.order.GetAllOrdersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getAllOrders</servlet-name>
+        <url-pattern>/order/all</url-pattern>
     </servlet-mapping>
 </web-app>
