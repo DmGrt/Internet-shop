@@ -49,7 +49,7 @@
         <a style="color: #f68f13" href="${pageContext.request.contextPath}/order/all">All orders (for admin)</a>
         <br>
         <a style="color: #f68f13"
-           href="${pageContext.request.contextPath}/product/get-for-manage">Product managing (for admin)</a>
+           href="${pageContext.request.contextPath}/product/manage">Product managing (for admin)</a>
     </span>
 </div>
 <div>

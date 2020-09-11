@@ -64,7 +64,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>getProductsForManage</servlet-name>
-        <url-pattern>/product/get-for-manage</url-pattern>
+        <url-pattern>/product/manage</url-pattern>
     </servlet-mapping>
 
     <servlet>
