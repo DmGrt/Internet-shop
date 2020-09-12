@@ -12,10 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 
 public class InjectDataController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("internet.shop");
+    private static final Logger logger = Logger.getRootLogger();
     private UserService userService = (UserService) injector.getInstance(UserService.class);
     private ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -37,6 +39,7 @@ public class InjectDataController extends HttpServlet {
 
         shoppingCartService.create(new ShoppingCart(mike.getId()));
         shoppingCartService.create(new ShoppingCart(nolan.getId()));
+        logger.info("Test data injected!");
         req.getRequestDispatcher("/WEB-INF/views/injectData.jsp").forward(req, resp);
     }
 }

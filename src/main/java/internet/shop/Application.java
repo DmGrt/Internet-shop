@@ -11,7 +11,7 @@ import internet.shop.service.ShoppingCartService;
 import internet.shop.service.UserService;
 
 public class Application {
-    private static Injector injector = Injector.getInstance("internet.shop");
+    private static Injector injector = Injector.getInstance("classes.internet.shop");
 
     public static void main(String[] args) {
         Product apple = new Product("Apple", 2_000_000_000);

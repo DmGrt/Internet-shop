@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 public class RegistrationController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("internet.shop");
+    private static final Logger logger = Logger.getRootLogger();
     private UserService userService = (UserService) injector.getInstance(UserService.class);
     private ShoppingCartService shoppingCartService =
             (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
@@ -36,8 +39,10 @@ public class RegistrationController extends HttpServlet {
             userService.create(newUser);
             ShoppingCart newShoppingCart = new ShoppingCart(newUser.getId());
             shoppingCartService.create(newShoppingCart);
+            logger.info("New user added!");
             resp.sendRedirect(req.getContextPath() + "/");
         } else {
+            logger.warn("Password and confirm password aren't equal.");
             req.setAttribute("message", "Password and Confirm password aren't the same!");
             req.setAttribute("name", name);
             req.setAttribute("login", login);
