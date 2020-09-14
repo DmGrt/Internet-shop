@@ -34,8 +34,6 @@
     <span style="font-family: Bahnschrift,cursive; font-size: x-large;">
         <a style="color: #f68f13" href="${pageContext.request.contextPath}/injectData">Inject test data into the DB!</a>
         <br>
-        <a style="color: #f68f13" href="${pageContext.request.contextPath}/user/registration">Registration here</a>
-        <br>
         <a style="color: #f68f13" href="${pageContext.request.contextPath}/user/all">All users here (for admin)</a>
         <br>
         <a style="color: #f68f13" href="${pageContext.request.contextPath}/product/add">Add new product (for admin)</a>
@@ -50,6 +48,7 @@
         <br>
         <a style="color: #f68f13"
            href="${pageContext.request.contextPath}/product/manage">Product managing (for admin)</a>
+        <br>
     </span>
 </div>
 <div>
