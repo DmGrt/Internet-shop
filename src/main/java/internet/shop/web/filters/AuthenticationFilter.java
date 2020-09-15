@@ -32,7 +32,7 @@ public class AuthenticationFilter implements Filter {
             return;
         }
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
-        if (userService.get(userId) == null) {
+        if (userId == null || userService.get(userId) == null) {
             resp.sendRedirect("/login");
             return;
         }

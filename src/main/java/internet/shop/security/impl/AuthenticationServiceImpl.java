@@ -6,18 +6,18 @@ import internet.shop.lib.Service;
 import internet.shop.model.User;
 import internet.shop.security.AuthenticationService;
 import internet.shop.service.UserService;
+import java.util.Optional;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
-    @Inject private UserService userService;
+    @Inject
+    private UserService userService;
 
     @Override
     public User login(String login, String password) throws AuthenticationException {
-        User userFromDB = userService.findByLogin(login).orElseThrow(() ->
-                new AuthenticationException("Incorrect username or password!"));
-
-        if (userFromDB.getPassword().equals(password)) {
-            return userFromDB;
+        Optional<User> userFromDB = userService.findByLogin(login);
+        if (userFromDB.isPresent() && userFromDB.get().getPassword().equals(password)) {
+            return userFromDB.get();
         }
         throw new AuthenticationException("Incorrect username or password!");
     }
