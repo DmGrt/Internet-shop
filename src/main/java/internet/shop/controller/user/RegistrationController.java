@@ -1,11 +1,13 @@
 package internet.shop.controller.user;
 
 import internet.shop.lib.Injector;
+import internet.shop.model.Role;
 import internet.shop.model.ShoppingCart;
 import internet.shop.model.User;
 import internet.shop.service.ShoppingCartService;
 import internet.shop.service.UserService;
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +35,7 @@ public class RegistrationController extends HttpServlet {
         String passwordConfirm = req.getParameter("pwd-confirm");
         if (password.equals(passwordConfirm)) {
             User newUser = new User(name, login, password);
+            newUser.setRoles(Set.of(Role.of("USER")));
             userService.create(newUser);
             ShoppingCart newShoppingCart = new ShoppingCart(newUser.getId());
             shoppingCartService.create(newShoppingCart);

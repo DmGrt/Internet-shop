@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <title>Login</title>
@@ -32,6 +32,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
-<h3>If you do not have an account <a href="/user/registration">Registration</a> </h3>
+<h3>If you do not have an account <a href="${pageContext.request.contextPath}/user/registration">Registration</a> </h3>
 </body>
 </html>

@@ -16,29 +16,32 @@
 <body style="background-image: linear-gradient(#4a4a4a, #000000); color: #ea9409;">
 <div style="text-align: center;">
     <span style="font-family: Bahnschrift,cursive; font-size: x-large;">
-       <a href="https://mate.academy/uk">Hello Mate!</a>
+       <a href="https://mate.academy/uk">Hello ADMIN!</a>
         <h4>Current time : ${time}</h4>
     </span>
 </div>
 <div>
-    <div class="spinner-grow text-muted"></div>
-    <div class="spinner-grow text-primary"></div>
-    <div class="spinner-grow text-success"></div>
-    <div class="spinner-grow text-info"></div>
-    <div class="spinner-grow text-warning"></div>
-    <div class="spinner-grow text-danger"></div>
-    <div class="spinner-grow text-secondary"></div>
-    <div class="spinner-grow text-light"></div>
+    <div class="spinner-border text-muted"></div>
+    <div class="spinner-border text-primary"></div>
+    <div class="spinner-border text-success"></div>
+    <div class="spinner-border text-info"></div>
+    <div class="spinner-border text-warning"></div>
+    <div class="spinner-border text-danger"></div>
+    <div class="spinner-border text-secondary"></div>
+    <div class="spinner-border text-light"></div>
 </div>
 <div>
     <span style="font-family: Bahnschrift,cursive; font-size: x-large;">
         <a style="color: #f68f13" href="${pageContext.request.contextPath}/injectData">Inject test data into the DB!</a>
         <br>
-        <a style="color: #f68f13" href="${pageContext.request.contextPath}/product/all">All products</a>
+        <a style="color: #f68f13" href="${pageContext.request.contextPath}/user/all">All users here</a>
         <br>
-        <a style="color: #f68f13" href="${pageContext.request.contextPath}/shopping-cart/products">Shopping cart</a>
+        <a style="color: #f68f13" href="${pageContext.request.contextPath}/product/add">Add new product</a>
         <br>
-        <a style="color: #f68f13" href="${pageContext.request.contextPath}/order/by-user">User orders</a>
+        <a style="color: #f68f13" href="${pageContext.request.contextPath}/order/all">All orders</a>
+        <br>
+        <a style="color: #f68f13"
+           href="${pageContext.request.contextPath}/product/manage">Product managing</a>
         <br>
         <a style="color: #f68f13"
            href="${pageContext.request.contextPath}/logout">Logout</a>
@@ -46,14 +49,14 @@
     </span>
 </div>
 <div>
-    <div class="spinner-grow text-muted"></div>
-    <div class="spinner-grow text-primary"></div>
-    <div class="spinner-grow text-success"></div>
-    <div class="spinner-grow text-info"></div>
-    <div class="spinner-grow text-warning"></div>
-    <div class="spinner-grow text-danger"></div>
-    <div class="spinner-grow text-secondary"></div>
-    <div class="spinner-grow text-light"></div>
+    <div class="spinner-border text-muted"></div>
+    <div class="spinner-border text-primary"></div>
+    <div class="spinner-border text-success"></div>
+    <div class="spinner-border text-info"></div>
+    <div class="spinner-border text-warning"></div>
+    <div class="spinner-border text-danger"></div>
+    <div class="spinner-border text-secondary"></div>
+    <div class="spinner-border text-light"></div>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
