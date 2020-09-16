@@ -2,6 +2,7 @@ package internet.shop.controller.user;
 
 import internet.shop.exceptions.AuthenticationException;
 import internet.shop.lib.Injector;
+import internet.shop.model.Role;
 import internet.shop.model.User;
 import internet.shop.security.AuthenticationService;
 import java.io.IOException;
@@ -28,8 +29,9 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         String login = req.getParameter("login");
         String pwd = req.getParameter("pwd");
+        User user;
         try {
-            User user = authenticationService.login(login, pwd);
+            user = authenticationService.login(login, pwd);
             HttpSession session = req.getSession();
             session.setAttribute(USER_ID, user.getId());
         } catch (AuthenticationException e) {
@@ -37,6 +39,11 @@ public class LoginController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(req, resp);
             return;
         }
-        resp.sendRedirect(req.getContextPath() + "/");
+        if (user.getRoles().contains(Role.of("USER"))) {
+            resp.sendRedirect(req.getContextPath() + "/");
+        }
+        if (user.getRoles().contains(Role.of("ADMIN"))) {
+            resp.sendRedirect(req.getContextPath() + "/admin");
+        }
     }
 }
