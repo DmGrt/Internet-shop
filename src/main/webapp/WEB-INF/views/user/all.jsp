@@ -35,7 +35,7 @@ background-image: linear-gradient(#4a4a4a, #000000); color: #f68f13;">
                 <c:out value="${user.login}"/>
             </td>
             <td>
-                <a href="${pageContext.request.contextPath}/users/delete?id=${user.id}">Delete</a>
+                <a href="${pageContext.request.contextPath}/user/delete?id=${user.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>
