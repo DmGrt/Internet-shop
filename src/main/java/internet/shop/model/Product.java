@@ -12,6 +12,12 @@ public class Product {
         this.price = price;
     }
 
+    public Product(Long id, String name, double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,6 +63,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "|| id - " + id + ", name - " + name + ", price - " + price + "||";
+        return "Product[ id - " + id + ", name - " + name + ", price - " + price + "]";
     }
 }
