@@ -1,10 +1,13 @@
 package internet.shop;
 
 import internet.shop.dao.ProductDao;
-import internet.shop.dao.jdbc.ProductDaoJdbcImpl;
+import internet.shop.lib.Injector;
 import internet.shop.model.Product;
 
 public class Application {
+    private static final Injector injector = Injector.getInstance("internet.shop");
+    private static ProductDao productDao =
+            (ProductDao) injector.getInstance(ProductDao.class);
 
     public static void main(String[] args) {
         Product apple = new Product("Apple", 2_000_000_000);
@@ -20,7 +23,6 @@ public class Application {
         Product updatedXiaomi = new Product("Redmi", 38_000_000);
         updatedXiaomi.setId(xiaomi.getId());
 
-        ProductDao productDao = new ProductDaoJdbcImpl();
         productDao.create(apple);
         productDao.create(google);
         productDao.create(huawei);
@@ -32,5 +34,6 @@ public class Application {
         System.out.println(productDao.update(updatedXiaomi));
         System.out.println(productDao.delete(samsung.getId()));
         System.out.println(productDao.get(samsung.getId()));
+        System.out.println(productDao.getAll());
     }
 }
