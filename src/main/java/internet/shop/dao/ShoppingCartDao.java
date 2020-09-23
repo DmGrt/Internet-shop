@@ -6,5 +6,5 @@ import java.util.Optional;
 public interface ShoppingCartDao extends GenericDao<ShoppingCart, Long> {
     Optional<ShoppingCart> getByUserId(Long userId);
 
-    double getTotalPrice(ShoppingCart shoppingCart);
+    double getTotalPrice(Long cartId);
 }

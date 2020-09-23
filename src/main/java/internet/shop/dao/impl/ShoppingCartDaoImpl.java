@@ -2,14 +2,12 @@ package internet.shop.dao.impl;
 
 import internet.shop.dao.ShoppingCartDao;
 import internet.shop.db.Storage;
-import internet.shop.lib.Dao;
 import internet.shop.model.Product;
 import internet.shop.model.ShoppingCart;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-@Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
     @Override
     public ShoppingCart create(ShoppingCart shoppingCart) {
@@ -50,8 +48,12 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     }
 
     @Override
-    public double getTotalPrice(ShoppingCart shoppingCart) {
-        return shoppingCart.getProducts().stream()
+    public double getTotalPrice(Long cartId) {
+        ShoppingCart cart = Storage.shoppingCarts.stream()
+                .filter(shoppingCart -> shoppingCart.getId().equals(cartId))
+                .findFirst()
+                .get();
+        return cart.getProducts().stream()
                 .mapToDouble(Product::getPrice)
                 .sum();
     }

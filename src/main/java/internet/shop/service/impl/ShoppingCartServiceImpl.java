@@ -64,6 +64,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     public double getTotalPrice(ShoppingCart shoppingCart) {
-        return shoppingCartDao.getTotalPrice(shoppingCart);
+        return shoppingCartDao.getTotalPrice(shoppingCart.getId());
     }
 }
