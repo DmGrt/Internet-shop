@@ -27,7 +27,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                cart = getCart(resultSet);
+                cart = getCartFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get cart by user id = "
@@ -83,7 +83,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                cart = getCart(resultSet);
+                cart = getCartFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get cart by id = "
@@ -100,7 +100,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                ShoppingCart cart = getCart(resultSet);
+                ShoppingCart cart = getCartFromResultSet(resultSet);
                 shoppingCarts.add(cart);
             }
         } catch (SQLException e) {
@@ -167,7 +167,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private ShoppingCart getCart(ResultSet resultSet) throws SQLException {
+    private ShoppingCart getCartFromResultSet(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong("cart_id");
         Long userId = resultSet.getLong("user_id");
         ShoppingCart shoppingCart = new ShoppingCart(userId);

@@ -28,7 +28,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                user = getUser(resultSet);
+                user = getUserFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get user by login = "
@@ -68,7 +68,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                user = getUser(resultSet);
+                user = getUserFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get user by id = "
@@ -85,7 +85,7 @@ public class UserDaoJdbcImpl implements UserDao {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                User user = getUser(resultSet);
+                User user = getUserFromResultSet(resultSet);
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -127,7 +127,7 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-    private User getUser(ResultSet resultSet) throws SQLException {
+    private User getUserFromResultSet(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong("user_id");
         String name = resultSet.getString("name");
         String login = resultSet.getString("login");
