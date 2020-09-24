@@ -26,13 +26,13 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
-            statement.close();
             while (resultSet.next()) {
-                cart = getCartFromResultSet(resultSet, connection);
+                cart = getCartFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get cart by user id = " + userId, e);
         }
+        cart.getProducts().addAll(getCartProducts(cart.getId()));
         return Optional.ofNullable(cart);
     }
 
@@ -45,14 +45,13 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             statement.setLong(1, shoppingCart.getUserId());
             statement.execute();
             ResultSet result = statement.getGeneratedKeys();
-            statement.close();
             if (result.next()) {
                 shoppingCart.setId(result.getLong(1));
             }
-            setNewProducts(shoppingCart, connection);
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to create cart " + shoppingCart.getId(), e);
         }
+        setNewProducts(shoppingCart);
         return shoppingCart;
     }
 
@@ -64,13 +63,13 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            statement.close();
             while (resultSet.next()) {
-                cart = getCartFromResultSet(resultSet, connection);
+                cart = getCartFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get cart by id = " + id, e);
         }
+        cart.getProducts().addAll(getCartProducts(cart.getId()));
         return Optional.ofNullable(cart);
     }
 
@@ -81,13 +80,15 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
-            statement.close();
             while (resultSet.next()) {
-                ShoppingCart cart = getCartFromResultSet(resultSet, connection);
+                ShoppingCart cart = getCartFromResultSet(resultSet);
                 shoppingCarts.add(cart);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get all carts!", e);
+        }
+        for (ShoppingCart cart : shoppingCarts) {
+            cart.getProducts().addAll(getCartProducts(cart.getId()));
         }
         return shoppingCarts;
     }
@@ -101,12 +102,11 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             statement.setLong(1, shoppingCart.getUserId());
             statement.setLong(2, shoppingCart.getId());
             statement.executeUpdate();
-            statement.close();
-            deleteOldProducts(shoppingCart, connection);
-            setNewProducts(shoppingCart, connection);
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to update cart " + shoppingCart.getId(), e);
         }
+        deleteOldProducts(shoppingCart);
+        setNewProducts(shoppingCart);
         return shoppingCart;
     }
 
@@ -122,49 +122,46 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private void setNewProducts(ShoppingCart cart, Connection connection) {
+    private void setNewProducts(ShoppingCart cart) {
         String query = "INSERT INTO shopping_carts_products (cart_id, product_id) VALUES (?, ?)";
-        try {
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
             for (Product product : cart.getProducts()) {
-                PreparedStatement statement = connection.prepareStatement(query);
                 statement.setLong(1, cart.getId());
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
-                statement.close();
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to set cart products " + cart.getId(), e);
         }
     }
 
-    private void deleteOldProducts(ShoppingCart cart, Connection connection) {
+    private void deleteOldProducts(ShoppingCart cart) {
         String query = "DELETE FROM shopping_carts_products WHERE cart_id = ?";
-        try {
+        try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, cart.getId());
             statement.executeUpdate();
-            statement.close();
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to delete cart products " + cart.getId(), e);
         }
     }
 
-    private ShoppingCart getCartFromResultSet(ResultSet resultSet, Connection connection)
+    private ShoppingCart getCartFromResultSet(ResultSet resultSet)
             throws SQLException {
         Long id = resultSet.getLong("cart_id");
         Long userId = resultSet.getLong("user_id");
         ShoppingCart shoppingCart = new ShoppingCart(userId);
         shoppingCart.setId(id);
-        shoppingCart.getProducts().addAll(getCartProducts(id, connection));
         return shoppingCart;
     }
 
-    private List<Product> getCartProducts(Long id, Connection connection) {
+    private List<Product> getCartProducts(Long id) {
         List<Product> products = new ArrayList<>();
         String query = "SELECT p.product_id, p.name, p.price FROM products p "
                 + "JOIN shopping_carts_products scp "
                 + "ON p.product_id = scp.product_id where cart_id = ?;";
-        try {
+        try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();

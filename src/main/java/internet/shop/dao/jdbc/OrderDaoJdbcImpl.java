@@ -25,13 +25,15 @@ public class OrderDaoJdbcImpl implements OrderDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
-            statement.close();
             while (resultSet.next()) {
-                Order order = getOrderFromResultSet(resultSet, connection);
+                Order order = getOrderFromResultSet(resultSet);
                 orders.add(order);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get cart by user id = " + userId, e);
+        }
+        for (Order order : orders) {
+            order.getProducts().addAll(getOrderProducts(order.getId()));
         }
         return orders;
     }
@@ -45,14 +47,13 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(1, order.getUserId());
             statement.execute();
             ResultSet result = statement.getGeneratedKeys();
-            statement.close();
             if (result.next()) {
                 order.setId(result.getLong(1));
             }
-            setNewProducts(order, connection);
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to create order " + order.getId(), e);
         }
+        setNewProducts(order);
         return order;
     }
 
@@ -64,13 +65,14 @@ public class OrderDaoJdbcImpl implements OrderDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            statement.close();
+
             while (resultSet.next()) {
-                order = getOrderFromResultSet(resultSet, connection);
+                order = getOrderFromResultSet(resultSet);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get order by id = " + id, e);
         }
+        order.getProducts().addAll(getOrderProducts(id));
         return Optional.ofNullable(order);
     }
 
@@ -81,13 +83,15 @@ public class OrderDaoJdbcImpl implements OrderDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
-            statement.close();
             while (resultSet.next()) {
-                Order order = getOrderFromResultSet(resultSet, connection);
+                Order order = getOrderFromResultSet(resultSet);
                 orders.add(order);
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get all carts!", e);
+        }
+        for (Order order : orders) {
+            order.getProducts().addAll(getOrderProducts(order.getId()));
         }
         return orders;
     }
@@ -101,12 +105,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.setLong(1, order.getUserId());
             statement.setLong(2, order.getId());
             statement.executeUpdate();
-            statement.close();
-            deleteOldProducts(order, connection);
-            setNewProducts(order, connection);
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to update order " + order.getId(), e);
         }
+        deleteOldProducts(order);
+        setNewProducts(order);
         return order;
     }
 
@@ -122,22 +125,21 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
-    private Order getOrderFromResultSet(ResultSet resultSet, Connection connection)
+    private Order getOrderFromResultSet(ResultSet resultSet)
             throws SQLException {
         Long id = resultSet.getLong("order_id");
         Long userId = resultSet.getLong("user_id");
         Order order = new Order(userId);
         order.setId(id);
-        order.getProducts().addAll(getOrderProducts(id, connection));
         return order;
     }
 
-    private List<Product> getOrderProducts(Long id, Connection connection) {
+    private List<Product> getOrderProducts(Long id) {
         List<Product> products = new ArrayList<>();
         String query = "SELECT p.product_id, p.name, p.price FROM products p "
                 + "JOIN orders_products op "
                 + "ON p.product_id = op.product_id where order_id = ?;";
-        try {
+        try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -155,28 +157,26 @@ public class OrderDaoJdbcImpl implements OrderDao {
         }
     }
 
-    private void setNewProducts(Order order, Connection connection) {
+    private void setNewProducts(Order order) {
         String query = "INSERT INTO orders_products (order_id, product_id) VALUES (?, ?)";
-        try {
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
             for (Product product : order.getProducts()) {
-                PreparedStatement statement = connection.prepareStatement(query);
                 statement.setLong(1, order.getId());
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
-                statement.close();
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to set order products " + order.getId(), e);
         }
     }
 
-    private void deleteOldProducts(Order order, Connection connection) {
+    private void deleteOldProducts(Order order) {
         String query = "DELETE FROM orders_products WHERE order_id = ?";
-        try {
+        try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, order.getId());
             statement.executeUpdate();
-            statement.close();
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to delete order products "
                     + order.getId(), e);
