@@ -73,8 +73,8 @@ public class UserDaoJdbcImpl implements UserDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 user = getUserFromResultSet(resultSet);
+                user.setRoles(roles);
             }
-            user.setRoles(roles);
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get user by id = "
                     + id, e);

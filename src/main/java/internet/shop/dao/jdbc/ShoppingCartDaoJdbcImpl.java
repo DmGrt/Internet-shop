@@ -68,8 +68,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 cart = getCartFromResultSet(resultSet);
+                cart.getProducts().addAll(products);
             }
-            cart.getProducts().addAll(products);
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get cart by id = " + id, e);
         }

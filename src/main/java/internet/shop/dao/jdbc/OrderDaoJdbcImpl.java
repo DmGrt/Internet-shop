@@ -68,8 +68,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 order = getOrderFromResultSet(resultSet);
+                order.getProducts().addAll(products);
             }
-            order.getProducts().addAll(products);
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get order by id = " + id, e);
         }
