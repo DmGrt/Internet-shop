@@ -32,7 +32,9 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get cart by user id = " + userId, e);
         }
-        cart.getProducts().addAll(getCartProducts(cart.getId()));
+        if (cart != null) {
+            cart.getProducts().addAll(getCartProducts(cart.getId()));
+        }
         return Optional.ofNullable(cart);
     }
 
@@ -58,6 +60,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     @Override
     public Optional<ShoppingCart> get(Long id) {
         ShoppingCart cart = null;
+        List<Product> products = getCartProducts(id);
         String query = "SELECT * FROM shopping_carts WHERE cart_id = ? AND is_deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -66,10 +69,10 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             while (resultSet.next()) {
                 cart = getCartFromResultSet(resultSet);
             }
+            cart.getProducts().addAll(products);
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get cart by id = " + id, e);
         }
-        cart.getProducts().addAll(getCartProducts(cart.getId()));
         return Optional.ofNullable(cart);
     }
 

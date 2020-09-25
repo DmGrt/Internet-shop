@@ -34,7 +34,9 @@ public class UserDaoJdbcImpl implements UserDao {
             throw new DataProcessingException("Failed to get user by login = "
                     + login, e);
         }
-        user.setRoles(getRolesFromDB(user.getId()));
+        if (user != null) {
+            user.setRoles(getRolesFromDB(user.getId()));
+        }
         return Optional.ofNullable(user);
     }
 
@@ -63,6 +65,7 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public Optional<User> get(Long id) {
         User user = null;
+        Set<Role> roles = getRolesFromDB(id);
         String query = "SELECT * FROM users WHERE user_id = ? AND is_deleted = FALSE";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -71,11 +74,11 @@ public class UserDaoJdbcImpl implements UserDao {
             while (resultSet.next()) {
                 user = getUserFromResultSet(resultSet);
             }
+            user.setRoles(roles);
         } catch (SQLException e) {
             throw new DataProcessingException("Failed to get user by id = "
                     + id, e);
         }
-        user.setRoles(getRolesFromDB(user.getId()));
         return Optional.ofNullable(user);
     }
 
