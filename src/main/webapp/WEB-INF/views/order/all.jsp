@@ -19,6 +19,7 @@ background-image: linear-gradient(#4a4a4a, #000000); color: #f68f13;">
     <thead class="thead-light">
     <tr>
         <th>ID</th>
+        <th>User ID</th>
         <th>Order</th>
         <th>Total price</th>
         <th></th>
@@ -30,6 +31,9 @@ background-image: linear-gradient(#4a4a4a, #000000); color: #f68f13;">
     <tr style="color: ghostwhite">
         <td>
             <c:out value="${order.id}"/>
+        </td>
+        <td>
+            <c:out value="${order.userId}"/>
         </td>
         <td>
             <c:out value="${order.products}"/>

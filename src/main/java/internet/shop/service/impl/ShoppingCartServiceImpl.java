@@ -54,6 +54,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    public double getTotalPrice(ShoppingCart shoppingCart) {
+        return shoppingCart.getProducts().stream()
+                .mapToDouble(Product::getPrice)
+                .sum();
+    }
+
+    @Override
     public ShoppingCart get(Long id) {
         return shoppingCartDao.get(id).get();
     }
@@ -61,9 +68,5 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public boolean delete(Long id) {
         return shoppingCartDao.delete(id);
-    }
-
-    public double getTotalPrice(ShoppingCart shoppingCart) {
-        return shoppingCartDao.getTotalPrice(shoppingCart);
     }
 }
