@@ -32,6 +32,8 @@
 </div>
 <div>
     <span style="font-family: Bahnschrift,cursive; font-size: x-large;">
+        <a style="color: #f68f13" href="${pageContext.request.contextPath}/injectData">Inject test data into the DB!</a>
+        <br>
         <a style="color: #f68f13" href="${pageContext.request.contextPath}/product/all">All products</a>
         <br>
         <a style="color: #f68f13" href="${pageContext.request.contextPath}/shopping-cart/products">Shopping cart</a>
