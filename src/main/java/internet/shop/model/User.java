@@ -22,9 +22,7 @@ public class User {
     }
 
     public User(String name, String login, String password, byte[] salt) {
-        this.name = name;
-        this.login = login;
-        this.password = password;
+        this(name, login, password);
         this.salt = salt;
     }
 
