@@ -4,7 +4,6 @@ import internet.shop.lib.Injector;
 import internet.shop.model.Product;
 import internet.shop.service.ProductService;
 import internet.shop.service.ShoppingCartService;
-
 import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

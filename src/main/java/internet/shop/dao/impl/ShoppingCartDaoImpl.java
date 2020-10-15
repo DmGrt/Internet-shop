@@ -3,7 +3,6 @@ package internet.shop.dao.impl;
 import internet.shop.dao.ShoppingCartDao;
 import internet.shop.db.Storage;
 import internet.shop.model.ShoppingCart;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;

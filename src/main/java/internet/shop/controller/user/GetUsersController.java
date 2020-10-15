@@ -3,7 +3,6 @@ package internet.shop.controller.user;
 import internet.shop.lib.Injector;
 import internet.shop.model.User;
 import internet.shop.service.UserService;
-
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
