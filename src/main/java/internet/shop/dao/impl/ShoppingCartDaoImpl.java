@@ -5,7 +5,6 @@ import internet.shop.db.Storage;
 import internet.shop.lib.Dao;
 import internet.shop.model.Product;
 import internet.shop.model.ShoppingCart;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;

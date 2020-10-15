@@ -4,7 +4,6 @@ import internet.shop.dao.UserDao;
 import internet.shop.db.Storage;
 import internet.shop.lib.Dao;
 import internet.shop.model.User;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
