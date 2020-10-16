@@ -33,7 +33,7 @@ Admin capabilities:
  A set of pages that display the result of the application to the user
  
 ### Business logic part 
-#####DAO and Service layers were implemented here:
+##### DAO and Service layers were implemented here:
 
 - The DAO layer is responsible for retrieving information 
   from the database and updating it.
@@ -41,7 +41,7 @@ Admin capabilities:
 - The Service layer is responsible for processing information and modifying it 
   in the process of user interaction with the application.
 
-#####The following web filters have been implemented:
+##### The following web filters have been implemented:
 
 - Authentication filter - is responsible for admitting only 
   registered users to the system.
