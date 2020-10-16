@@ -49,7 +49,7 @@ Admin capabilities:
 - The Service layer is responsible for processing information and modifying it 
   in the process of user interaction with the application.
 
-#####The following web filters have been implemented:
+##### The following web filters have been implemented:
 
 - Authentication filter - is responsible for admitting only 
   registered users to the system.
