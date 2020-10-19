@@ -59,16 +59,16 @@ Admin capabilities:
 
 ## Project launching
 
-To run the project on your local machine, clone this repository. 
+1. To run the project on your local machine, clone this repository. 
 
-Make sure you have configured Tomcat Server and set up the MySQL and some 
+2. Make sure you have configured Tomcat Server and set up the MySQL and some 
 RDBMS on your machine. 
 
-Perform the initialization of the data scheme (sample here -> init_db.sql). 
+3. Perform the initialization of the data scheme (sample here -> init_db.sql). 
 
-Set up your schema's password and user's login in the ConnectionUtil class. 
+4. Set up your schema's password and user's login in the ConnectionUtil class. 
 
-If you have performed all the steps correctly, and your server is active, 
+5. If you have performed all the steps correctly, and your server is active, 
 the application will start.
 
 Author : [DmGrt](https://github.com/DmGrt)
